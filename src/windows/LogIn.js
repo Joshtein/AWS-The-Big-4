@@ -15,8 +15,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import UserPool from '../AWSDependencies/UserPool';
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
-import UserContainer from '../components/userContainer'
-import { UPDATE_USER_ID } from '../redux/user/userTypes'
+import { getUserData } from '../redux/coba'
 
 function Copyright() {
   return (
@@ -51,18 +50,17 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function LogIn({ dispatch }) {
+function LogIn({ res, getUserData }) {
   const classes = useStyles();
-  const [state, setState] = useState('start')
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
-  const updateUserId = (userId) => {      
-    dispatch({
-        type: UPDATE_USER_ID,
-        payload: userId
-    });
-  };
+  // const updateUserId = (userId) => {      
+  //   dispatch({
+  //       type: UPDATE_USER_ID,
+  //       payload: userId
+  //   });
+  // };
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -91,8 +89,9 @@ function LogIn({ dispatch }) {
                           console.log(attributes);
                           const userId = attributes[1].Value;
                           
-                          updateUserId(userId);
-                          setState('display-user-data');
+                          getUserData(userId);
+                          console.log(res.userData);
+                          // setState('display-user-data');
                         }
                     });
                 };
@@ -109,8 +108,6 @@ function LogIn({ dispatch }) {
   };
 
   return (
-    <div>
-    {state === 'start' &&(
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -179,16 +176,19 @@ function LogIn({ dispatch }) {
           <Copyright />
         </Box>
       </Container>
-    )};
-    {state === 'display-user-data' && <UserContainer />};
-    </div>
   );
 }
 
-function mapStateToProps(state){
+const mapStateToProps = state => {
   return {
-      userId: state.userId
+    res: state.user
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUserData: (userId) => dispatch(getUserData(userId))
   }
 }
   
-export default connect(mapStateToProps)(LogIn);
+export default connect(mapStateToProps,mapDispatchToProps)(LogIn);
