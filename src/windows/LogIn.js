@@ -90,8 +90,12 @@ function LogIn({ res, getUserData }) {
                           const userId = attributes[1].Value;
                           
                           getUserData(userId);
-                          console.log(res.userData);
-                          // setState('display-user-data');
+                          res.loading ? (
+                            console.log("Loading")
+                          ) : res.error ? (
+                            console.log(res.error)
+                          ) : (
+                            console.log(res.userData));
                         }
                     });
                 };
