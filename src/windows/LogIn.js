@@ -15,7 +15,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import UserPool from '../AWSDependencies/UserPool';
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
+<<<<<<< HEAD
 import { getUserData } from '../redux/coba'
+=======
+import UserContainer from '../components/userContainer'
+import { UPDATE_USER_ID } from '../redux/user/userTypes'
+>>>>>>> 4c00b231bc3e5e9301b54d6ab480ab3c92128e83
 
 function Copyright() {
   return (
@@ -50,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+<<<<<<< HEAD
 function LogIn({ res, getUserData }) {
   const classes = useStyles();
   const [password, setPassword] = useState("");
@@ -61,6 +67,20 @@ function LogIn({ res, getUserData }) {
   //       payload: userId
   //   });
   // };
+=======
+function LogIn({ dispatch }) {
+  const classes = useStyles();
+  const [state, setState] = useState('start')
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+
+  const updateUserId = (userId) => {      
+    dispatch({
+        type: UPDATE_USER_ID,
+        payload: userId
+    });
+  };
+>>>>>>> 4c00b231bc3e5e9301b54d6ab480ab3c92128e83
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -89,9 +109,14 @@ function LogIn({ res, getUserData }) {
                           console.log(attributes);
                           const userId = attributes[1].Value;
                           
+<<<<<<< HEAD
                           getUserData(userId);
                           console.log(res.userData);
                           // setState('display-user-data');
+=======
+                          updateUserId(userId);
+                          setState('display-user-data');
+>>>>>>> 4c00b231bc3e5e9301b54d6ab480ab3c92128e83
                         }
                     });
                 };
@@ -108,6 +133,11 @@ function LogIn({ res, getUserData }) {
   };
 
   return (
+<<<<<<< HEAD
+=======
+    <div>
+    {state === 'start' &&(
+>>>>>>> 4c00b231bc3e5e9301b54d6ab480ab3c92128e83
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -176,6 +206,7 @@ function LogIn({ res, getUserData }) {
           <Copyright />
         </Box>
       </Container>
+<<<<<<< HEAD
   );
 }
 
@@ -192,3 +223,18 @@ const mapDispatchToProps = (dispatch) => {
 }
   
 export default connect(mapStateToProps,mapDispatchToProps)(LogIn);
+=======
+    )};
+    {state === 'display-user-data' && <UserContainer />};
+    </div>
+  );
+}
+
+function mapStateToProps(state){
+  return {
+      userId: state.userId
+  }
+}
+  
+export default connect(mapStateToProps)(LogIn);
+>>>>>>> 4c00b231bc3e5e9301b54d6ab480ab3c92128e83
