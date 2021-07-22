@@ -3,10 +3,7 @@ import './App.css';
 import store from './redux/store'
 import SignUp from './windows/SignUp';
 import LogIn from './windows/LogIn';
-<<<<<<< HEAD
 import DeployAPI from './windows/TestAPI';
-=======
->>>>>>> 4c00b231bc3e5e9301b54d6ab480ab3c92128e83
 import { Provider } from 'react-redux'
 
 function App() {
@@ -30,10 +27,8 @@ function App() {
     <Provider store={store}>
       <div>
         <LogIn />
-<<<<<<< HEAD
         {/* <DeployAPI /> */}
-=======
->>>>>>> 4c00b231bc3e5e9301b54d6ab480ab3c92128e83
+        
       </div>
     </Provider>
     //<SignUp />

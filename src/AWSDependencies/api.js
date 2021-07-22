@@ -1,14 +1,5 @@
 import axios from 'axios'
 
-<<<<<<< HEAD
-=======
-let config = {
-    headers: {
-        'Content-Type': 'application/json',
-    }
-}
-
->>>>>>> 4c00b231bc3e5e9301b54d6ab480ab3c92128e83
 //User Interface API
 
 // Post User Data
