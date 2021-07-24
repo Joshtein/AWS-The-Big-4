@@ -397,6 +397,357 @@ export const getListOfMajorsInMajorGroup = async(dataSent)=>{
     }
 }
 
+//Get List of Universities
+/*
+format return
+[
+    {
+      "majorGroup": [
+        {
+          "name": "Saintek",
+          "majors": []
+        },
+        {
+          "name": "Soshum",
+          "majors": []
+        }
+      ],
+      "universityName": "UNPAD"
+    },
+    {
+      "majorGroup": [
+        {
+          "name": "Saintek",
+          "majors": []
+        },
+        {
+          "name": "Soshum",
+          "majors": []
+        }
+      ],
+      "universityName": "UNSOED"
+    },
+    {
+      "majorGroup": [
+        {
+          "majors": [
+            {
+              "score": 83,
+              "accreditation": "A",
+              "majorName": "Teknik Elektro",
+              "subjects": [
+                {
+                  "name": "matematikaMinat",
+                  "weight": 5
+                },
+                {
+                  "name": "fisika",
+                  "weight": 5
+                },
+                {
+                  "name": "kimia",
+                  "weight": 3
+                },
+                {
+                  "name": "biologi",
+                  "weight": 2
+                },
+                {
+                  "name": "bahasaInggris",
+                  "weight": 3
+                },
+                {
+                  "name": "bahasaIIndonesia",
+                  "weight": 3
+                }
+              ],
+              "budget": 7000000
+            },
+            {
+              "score": 85,
+              "accreditation": "A",
+              "majorName": "Matematika",
+              "subjects": [
+                {
+                  "name": "Matematika IPA",
+                  "weight": 6
+                },
+                {
+                  "name": "Fisika",
+                  "weight": 3
+                },
+                {
+                  "name": "Kimia",
+                  "weight": 1
+                },
+                {
+                  "name": "Biologi",
+                  "weight": 1
+                },
+                {
+                  "name": "Bahasa Inggris",
+                  "weight": 5
+                },
+                {
+                  "name": "Bahasa Indonesia",
+                  "weight": 5
+                }
+              ],
+              "budget": 7000000
+            },
+            {
+              "score": 90,
+              "accreditation": "A",
+              "majorName": "Kedokteran",
+              "subjects": [
+                {
+                  "name": "Matematika IPA",
+                  "weight": 3
+                },
+                {
+                  "name": "Fisika",
+                  "weight": 1
+                },
+                {
+                  "name": "Kimia",
+                  "weight": 4
+                },
+                {
+                  "name": "Biologi",
+                  "weight": 7
+                },
+                {
+                  "name": "Bahasa Inggris",
+                  "weight": 3
+                },
+                {
+                  "name": "Bahasa Indonesia",
+                  "weight": 3
+                }
+              ],
+              "budget": 7000000
+            },
+            {
+              "score": 87,
+              "accreditation": "A",
+              "majorName": "Teknik Kimia",
+              "budget": 7000000,
+              "subjects": [
+                {
+                  "name": "Matematika IPA",
+                  "weight": 5
+                },
+                {
+                  "name": "Fisika",
+                  "weight": 5
+                },
+                {
+                  "name": "Kimia",
+                  "weight": 5
+                },
+                {
+                  "name": "Biologi",
+                  "weight": 2
+                },
+                {
+                  "name": "Bahasa Inggris",
+                  "weight": 2
+                },
+                {
+                  "name": "Bahasa Indonesia",
+                  "weight": 2
+                }
+              ]
+            }
+          ],
+          "name": "Saintek"
+        },
+        {
+          "name": "Soshum",
+          "majors": [
+            {
+              "score": 77,
+              "accreditation": "A",
+              "majorName": "Sastra Daerah Sastra Jawa",
+              "subjects": [
+                {
+                  "name": "geografi",
+                  "weight": 4
+                },
+                {
+                  "name": "sejarahMinat",
+                  "weight": 3
+                },
+                {
+                  "name": "sosiologi",
+                  "weight": 6
+                },
+                {
+                  "name": "ekonomi",
+                  "weight": 1
+                },
+                {
+                  "name": "bahasaInggris",
+                  "weight": 1
+                },
+                {
+                  "name": "bahasaIIndonesia",
+                  "weight": 6
+                }
+              ],
+              "budget": 10000000
+            },
+            {
+              "score": 77,
+              "accreditation": "A",
+              "majorName": "Sastra Rusia",
+              "subjects": [
+                {
+                  "name": "Geografi",
+                  "weight": 3
+                },
+                {
+                  "name": "Sejarah Minat",
+                  "weight": 4
+                },
+                {
+                  "name": "Sosiologi",
+                  "weight": 3
+                },
+                {
+                  "name": "Ekonomi",
+                  "weight": 1
+                },
+                {
+                  "name": "Bahasa Inggris",
+                  "weight": 5
+                },
+                {
+                  "name": "Bahasa Indonesia",
+                  "weight": 5
+                }
+              ],
+              "budget": 10000000
+            },
+            {
+              "score": 79,
+              "accreditation": "A",
+              "majorName": "Antropologi Sosial",
+              "subjects": [
+                {
+                  "name": "Geografi",
+                  "weight": 2
+                },
+                {
+                  "name": "Sejarah Minat",
+                  "weight": 6
+                },
+                {
+                  "name": "Sosiologi",
+                  "weight": 6
+                },
+                {
+                  "name": "Ekonomi",
+                  "weight": 1
+                },
+                {
+                  "name": "Bahasa Inggris",
+                  "weight": 1
+                },
+                {
+                  "name": "Bahasa Indonesia",
+                  "weight": 5
+                }
+              ],
+              "budget": 10000000
+            },
+            {
+              "score": 79,
+              "accreditation": "A",
+              "majorName": "Ilmu Filsafat",
+              "subjects": [
+                {
+                  "name": "Geografi",
+                  "weight": 1
+                },
+                {
+                  "name": "Sejarah Minat",
+                  "weight": 6
+                },
+                {
+                  "name": "Sosiologi",
+                  "weight": 6
+                },
+                {
+                  "name": "Ekonomi",
+                  "weight": 1
+                },
+                {
+                  "name": "Bahasa Inggris",
+                  "weight": 1
+                },
+                {
+                  "name": "Bahasa Indonesia",
+                  "weight": 6
+                }
+              ],
+              "budget": 10000000
+            },
+            {
+              "score": 79,
+              "accreditation": "A",
+              "majorName": "Sastra Belanda",
+              "subjects": [
+                {
+                  "name": "Geografi",
+                  "weight": 3
+                },
+                {
+                  "name": "Sejarah Minat",
+                  "weight": 4
+                },
+                {
+                  "name": "Sosiologi",
+                  "weight": 3
+                },
+                {
+                  "name": "Ekonomi",
+                  "weight": 1
+                },
+                {
+                  "name": "Bahasa Inggris",
+                  "weight": 5
+                },
+                {
+                  "name": "Bahasa Indonesia",
+                  "weight": 5
+                }
+              ],
+              "budget": 10000000
+            }
+          ]
+        }
+      ],
+      "universityName": "UI"
+    },
+    {
+      "majorGroup": [ 
+        .
+        .
+        .
+        .
+*/
+export const getListOfUniversities = async()=>{
+  try{
+      const res= await axios.get("https://bxsg39yshk.execute-api.us-east-1.amazonaws.com/test/predictrecomendation/getlistofuniversities");
+      return res.data.body;
+  } catch (error) {
+      console.error(error);
+  }
+}
+
+
+
 //News Stream API
 
 //Get News
@@ -661,9 +1012,9 @@ format return
   }
 }
 */
-export const getUnivMajorList = async(dataSent)=>{
+export const getUnivData = async(dataSent)=>{
     try{
-        const res= await axios.put("https://bxsg39yshk.execute-api.us-east-1.amazonaws.com/test/universityinterface/getunivmajorlist", dataSent);
+        const res= await axios.put("https://bxsg39yshk.execute-api.us-east-1.amazonaws.com/test/universityinterface/getunivdata", dataSent);
         return res.data.body;
     } catch (error) {
         console.error(error);
