@@ -443,319 +443,228 @@ export const newsCreate = async(dataSent)=>{
 
 //University Interface API
 
-//Get Univ Major List
+//Get Univ Data
 /*
 format dataSent
 {
-  "universityName": "UI"
+  "universityName": "ITB"
 }
 format return
-[
-    {
-      "majors": [
-        {
-          "score": 83,
-          "accreditation": "A",
-          "majorName": "Teknik Elektro",
-          "subjects": [
-            {
-              "name": "matematikaMinat",
-              "weight": 5
-            },
-            {
-              "name": "fisika",
-              "weight": 5
-            },
-            {
-              "name": "kimia",
-              "weight": 3
-            },
-            {
-              "name": "biologi",
-              "weight": 2
-            },
-            {
-              "name": "bahasaInggris",
-              "weight": 3
-            },
-            {
-              "name": "bahasaIIndonesia",
-              "weight": 3
-            }
-          ],
-          "budget": 7000000
-        },
-        {
-          "score": 85,
-          "accreditation": "A",
-          "majorName": "Matematika",
-          "subjects": [
-            {
-              "name": "Matematika IPA",
-              "weight": 6
-            },
-            {
-              "name": "Fisika",
-              "weight": 3
-            },
-            {
-              "name": "Kimia",
-              "weight": 1
-            },
-            {
-              "name": "Biologi",
-              "weight": 1
-            },
-            {
-              "name": "Bahasa Inggris",
-              "weight": 5
-            },
-            {
-              "name": "Bahasa Indonesia",
-              "weight": 5
-            }
-          ],
-          "budget": 7000000
-        },
-        {
-          "score": 90,
-          "accreditation": "A",
-          "majorName": "Kedokteran",
-          "subjects": [
-            {
-              "name": "Matematika IPA",
-              "weight": 3
-            },
-            {
-              "name": "Fisika",
-              "weight": 1
-            },
-            {
-              "name": "Kimia",
-              "weight": 4
-            },
-            {
-              "name": "Biologi",
-              "weight": 7
-            },
-            {
-              "name": "Bahasa Inggris",
-              "weight": 3
-            },
-            {
-              "name": "Bahasa Indonesia",
-              "weight": 3
-            }
-          ],
-          "budget": 7000000
-        },
-        {
-          "score": 87,
-          "accreditation": "A",
-          "majorName": "Teknik Kimia",
-          "budget": 7000000,
-          "subjects": [
-            {
-              "name": "Matematika IPA",
-              "weight": 5
-            },
-            {
-              "name": "Fisika",
-              "weight": 5
-            },
-            {
-              "name": "Kimia",
-              "weight": 5
-            },
-            {
-              "name": "Biologi",
-              "weight": 2
-            },
-            {
-              "name": "Bahasa Inggris",
-              "weight": 2
-            },
-            {
-              "name": "Bahasa Indonesia",
-              "weight": 2
-            }
-          ]
-        }
-      ],
-      "name": "Saintek"
-    },
-    {
-      "name": "Soshum",
-      "majors": [
-        {
-          "score": 77,
-          "accreditation": "A",
-          "majorName": "Sastra Daerah Sastra Jawa",
-          "subjects": [
-            {
-              "name": "geografi",
-              "weight": 4
-            },
-            {
-              "name": "sejarahMinat",
-              "weight": 3
-            },
-            {
-              "name": "sosiologi",
-              "weight": 6
-            },
-            {
-              "name": "ekonomi",
-              "weight": 1
-            },
-            {
-              "name": "bahasaInggris",
-              "weight": 1
-            },
-            {
-              "name": "bahasaIIndonesia",
-              "weight": 6
-            }
-          ],
-          "budget": 10000000
-        },
-        {
-          "score": 77,
-          "accreditation": "A",
-          "majorName": "Sastra Rusia",
-          "subjects": [
-            {
-              "name": "Geografi",
-              "weight": 3
-            },
-            {
-              "name": "Sejarah Minat",
-              "weight": 4
-            },
-            {
-              "name": "Sosiologi",
-              "weight": 3
-            },
-            {
-              "name": "Ekonomi",
-              "weight": 1
-            },
-            {
-              "name": "Bahasa Inggris",
-              "weight": 5
-            },
-            {
-              "name": "Bahasa Indonesia",
-              "weight": 5
-            }
-          ],
-          "budget": 10000000
-        },
-        {
-          "score": 79,
-          "accreditation": "A",
-          "majorName": "Antropologi Sosial",
-          "subjects": [
-            {
-              "name": "Geografi",
-              "weight": 2
-            },
-            {
-              "name": "Sejarah Minat",
-              "weight": 6
-            },
-            {
-              "name": "Sosiologi",
-              "weight": 6
-            },
-            {
-              "name": "Ekonomi",
-              "weight": 1
-            },
-            {
-              "name": "Bahasa Inggris",
-              "weight": 1
-            },
-            {
-              "name": "Bahasa Indonesia",
-              "weight": 5
-            }
-          ],
-          "budget": 10000000
-        },
-        {
-          "score": 79,
-          "accreditation": "A",
-          "majorName": "Ilmu Filsafat",
-          "subjects": [
-            {
-              "name": "Geografi",
-              "weight": 1
-            },
-            {
-              "name": "Sejarah Minat",
-              "weight": 6
-            },
-            {
-              "name": "Sosiologi",
-              "weight": 6
-            },
-            {
-              "name": "Ekonomi",
-              "weight": 1
-            },
-            {
-              "name": "Bahasa Inggris",
-              "weight": 1
-            },
-            {
-              "name": "Bahasa Indonesia",
-              "weight": 6
-            }
-          ],
-          "budget": 10000000
-        },
-        {
-          "score": 79,
-          "accreditation": "A",
-          "majorName": "Sastra Belanda",
-          "subjects": [
-            {
-              "name": "Geografi",
-              "weight": 3
-            },
-            {
-              "name": "Sejarah Minat",
-              "weight": 4
-            },
-            {
-              "name": "Sosiologi",
-              "weight": 3
-            },
-            {
-              "name": "Ekonomi",
-              "weight": 1
-            },
-            {
-              "name": "Bahasa Inggris",
-              "weight": 5
-            },
-            {
-              "name": "Bahasa Indonesia",
-              "weight": 5
-            }
-          ],
-          "budget": 10000000
-        }
-      ]
-    }
-]
+{
+    "majorGroup": [
+      {
+        "name": "Saintek",
+        "majors": [
+          {
+            "score": 88,
+            "accreditation": "A",
+            "majorName": "Teknik Elektro",
+            "budget": 12500000,
+            "subjects": [
+              {
+                "name": "Matematika IPA",
+                "weight": 5
+              },
+              {
+                "name": "Fisika",
+                "weight": 5
+              },
+              {
+                "name": "Kimia",
+                "weight": 3
+              },
+              {
+                "name": "Biologi",
+                "weight": 2
+              },
+              {
+                "name": "Bahasa Inggris",
+                "weight": 2
+              },
+              {
+                "name": "Bahasa Indonesia",
+                "weight": 4
+              }
+            ],
+            "desc": "Program Studi Teknik Elektro menyelenggarakan perkuliahan untuk program S1 Reguler dengan dua program studi yaitu Teknik Elektro  dan Teknik Komputer. Program Studi Teknik Elektro menekankan pengembangan Sumber Daya Manusia (SDM) di bidang elektronika, komputer, tenaga listrik, sistem kendali dan telekomunikasi. Lulusan dari program studi ini diharapkan dapat menjadi tenaga ahli Teknik Elektro yang berkualitas dan memiliki kemampuan untuk mengembangkan pengetahuan dan melakukan penelitian secara mandiri serta mampu bekerja dan menerapkannya pada industri yang sesuai."
+          },
+          {
+            "score": 87,
+            "accreditation": "A",
+            "majorName": "Farmasi",
+            "budget": 12500000,
+            "subjects": [
+              {
+                "name": "Matematika IPA",
+                "weight": 3
+              },
+              {
+                "name": "Fisika",
+                "weight": 2
+              },
+              {
+                "name": "Kimia",
+                "weight": 6
+              },
+              {
+                "name": "Biologi",
+                "weight": 6
+              },
+              {
+                "name": "Bahasa Inggris",
+                "weight": 2
+              },
+              {
+                "name": "Bahasa Indonesia",
+                "weight": 2
+              }
+            ]
+          },
+          {
+            "score": 86,
+            "accreditation": "A",
+            "majorName": "Geofisika",
+            "budget": 12500000,
+            "subjects": [
+              {
+                "name": "Matematika IPA",
+                "weight": 5
+              },
+              {
+                "name": "Fisika",
+                "weight": 5
+              },
+              {
+                "name": "Kimia",
+                "weight": 3
+              },
+              {
+                "name": "Biologi",
+                "weight": 2
+              },
+              {
+                "name": "Bahasa Inggris",
+                "weight": 3
+              },
+              {
+                "name": "Bahasa Indonesia",
+                "weight": 3
+              }
+            ]
+          },
+          {
+            "score": 86,
+            "accreditation": "A",
+            "majorName": "Teknik Sipil",
+            "budget": 12500000,
+            "subjects": [
+              {
+                "name": "Matematika IPA",
+                "weight": 5
+              },
+              {
+                "name": "Fisika",
+                "weight": 5
+              },
+              {
+                "name": "Kimia",
+                "weight": 2
+              },
+              {
+                "name": "Biologi",
+                "weight": 1
+              },
+              {
+                "name": "Bahasa Inggris",
+                "weight": 4
+              },
+              {
+                "name": "Bahasa Indonesia",
+                "weight": 4
+              }
+            ]
+          },
+          {
+            "score": 88,
+            "accreditation": "A",
+            "majorName": "Teknik Perminyakan",
+            "budget": 12500000,
+            "subjects": [
+              {
+                "name": "Matematika IPA",
+                "weight": 5
+              },
+              {
+                "name": "Fisika",
+                "weight": 5
+              },
+              {
+                "name": "Kimia",
+                "weight": 4
+              },
+              {
+                "name": "Biologi",
+                "weight": 1
+              },
+              {
+                "name": "Bahasa Inggris",
+                "weight": 3
+              },
+              {
+                "name": "Bahasa Indonesia",
+                "weight": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Soshum",
+        "majors": [
+          {
+            "score": 83,
+            "accreditation": "A",
+            "majorName": "Manajemen",
+            "budget": 20000000,
+            "subjects": [
+              {
+                "name": "Geografi",
+                "weight": 2
+              },
+              {
+                "name": "Sejarah Minat",
+                "weight": 2
+              },
+              {
+                "name": "Sosiologi",
+                "weight": 2
+              },
+              {
+                "name": "Ekonomi",
+                "weight": 5
+              },
+              {
+                "name": "Bahasa Inggris",
+                "weight": 5
+              },
+              {
+                "name": "Bahasa Indonesia",
+                "weight": 5
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "desc": "Institut Teknologi Bandung (ITB) merupakan sekolah tinggi teknik pertama di Indonesia yang didirikan pada tanggal 2 Maret 1959 di Jawa Barat yang mengemban misi pengabdian ilmu pengetahuan dan teknologi untuk memajukan Indonesia.",
+    "universityName": "ITB"
+  }
+}
 */
 export const getUnivMajorList = async(dataSent)=>{
     try{
         const res= await axios.put("https://bxsg39yshk.execute-api.us-east-1.amazonaws.com/test/universityinterface/getunivmajorlist", dataSent);
-        const list = [...res.data.body];
-        return list;
+        return res.data.body;
     } catch (error) {
         console.error(error);
     }
