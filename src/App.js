@@ -26,9 +26,8 @@ function App() {
     // </div>
     <Provider store={store}>
       <div>
-        <LogIn />
-        {/* <DeployAPI /> */}
-        
+        {/* <LogIn /> */}
+        <DeployAPI />
       </div>
     </Provider>
     //<SignUp />
