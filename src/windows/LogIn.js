@@ -15,7 +15,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import UserPool from '../AWSDependencies/UserPool';
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
-import { getUserData } from '../redux/coba'
+import { getUserData } from '../redux/coba';
+import { useHistory } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -52,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 function LogIn({ res, getUserData }) {
   const classes = useStyles();
+  const history = useHistory();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
@@ -106,9 +108,10 @@ function LogIn({ res, getUserData }) {
             }
         },
         onFailure: (err) => {
-            console.error("onSuccess: ", err);
+            console.error("onFailure: ", err);
         }
     });
+    history.push('/calculator');
   };
 
   return (
@@ -169,7 +172,7 @@ function LogIn({ res, getUserData }) {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" onClick={() => history.push('/')}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

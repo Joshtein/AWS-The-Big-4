@@ -13,7 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import UserPool from '../AWSDependencies/UserPool';
-import { userCreate } from  '../AWSDependencies/api'
+import { userCreate } from  '../AWSDependencies/api';
+import { useHistory } from 'react-router-dom';
 
 const crypto = require("crypto");
 const generateUUID = () => crypto.randomBytes(16).toString("hex");
@@ -53,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
-  //const [click, setClick] = useState(false);
+  const history = useHistory();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
@@ -91,6 +92,7 @@ export default function SignUp() {
         }
         console.log(data);
     });
+    history.push('/login');
   };
 
   return (
@@ -176,10 +178,10 @@ export default function SignUp() {
           >
             Sign Up
           </Button>
-          <Grid container justifyContent="flex-end">
+          <Grid container justifyContent="center">
             <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
+              <Link href="#" variant="body2" onClick={() => history.push('/login')}>
+                Already have an account? Log in
               </Link>
             </Grid>
           </Grid>
