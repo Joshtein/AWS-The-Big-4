@@ -22,6 +22,7 @@ import {mainListItems} from './listItems';
 import Input from '@material-ui/core/Input'
 import TextField from '@material-ui/core/TextField'
 import Autocomplete from '@material-ui/lab/Autocomplete'
+import { useHistory } from 'react-router-dom';
 
 
 function Copyright() {
@@ -135,6 +136,11 @@ export default function Calculator() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  const history = useHistory();
+  const onSubmit = (event) => {
+    event.preventDefault();
+    history.push('/');
+  };
 
   return (
     <div className={classes.root}>
@@ -192,7 +198,7 @@ export default function Calculator() {
           renderInput={(params) => <TextField {...params} label="Major" variant="outlined" />}
         />
 
-        <Button variant="contained" size='large' className={classes.calButton}>Calculate</Button>
+        <Button variant="contained" size='large' className={classes.calButton} onClick={onSubmit}>Calculate</Button>
 
         </Container>
 

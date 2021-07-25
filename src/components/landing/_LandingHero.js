@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { Box, Button, Card, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 import HeroImage from "../../assets/HeroImage.png";
@@ -19,8 +20,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-function LandingHero() {
+function LandingHero({status}) {
   const classes = useStyles();
+  console.log(status);
+  const route = ((status === false) ? "/login":"/calculator");
   return (
     <Grid container classes={{root: classes.hero}}>
       <Grid item md={6} className={classes.hero_description_container}>
@@ -31,16 +34,16 @@ function LandingHero() {
             </Typography>
           </Box>
           <Box mb={8}>
-            <Typography variant="p">
+            <Typography variant="body1">
               Get the best recommendation to your dream university, for free.
             </Typography>
           </Box>
-          <Button component={RouterLink} to="/calculator" color="primary" variant="contained">
+          <Button component={RouterLink} to={route} color="primary" variant="contained">
             Get Started &ndash; Predict Now!
           </Button>
         </Box>
       </Grid>
-      <Grid item md={6} mdDown style={{height: "100%"}}>
+      <Grid item md={6} style={{height: "100%"}}>
         <Card style={{height: "100%"}}>
           <CardMedia 
             image={HeroImage} 
@@ -53,4 +56,10 @@ function LandingHero() {
   )
 }
 
-export default LandingHero; 
+const mapStateToProps = state => {
+  return {
+    status: state.statusLoggedIn
+  }
+}
+
+export default connect(mapStateToProps)(LandingHero); 

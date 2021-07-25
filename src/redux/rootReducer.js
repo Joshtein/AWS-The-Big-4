@@ -4,7 +4,7 @@ import univReducer from './univ/univReducer'
 
 const UPDATE_STATUS_LOGGED_IN = 'UPDATE_STATUS_LOGGED_IN'
 
-const initialState = 'false'
+const initialState = false
 
 const statusReducer = (state = initialState, action) => {
   switch (action.type) {

@@ -106,10 +106,9 @@ function LogIn({ resUser, resUniv, status, getUserData, getUniversityData, updat
                             resUser.loading ? (
                               console.log("Loading")
                             ) : resUser.error ? (
-                              console.log(resUniv.error)
+                              console.log(resUser.error)
                             ) : (
-                              // console.log(resUniv.univData);
-                              history.push('/calculator') //ganti ke landing page nanti
+                              history.push('/') //ganti ke landing page nanti
                             );
                             }
                             else{
@@ -122,7 +121,7 @@ function LogIn({ resUser, resUniv, status, getUserData, getUniversityData, updat
                               console.log(resUniv.error)
                             ) : (
                               // console.log(resUniv.univData);
-                              history.push('/landing') //ganti ke univ dashboard nanti
+                              history.push('/calculator') //ganti ke univ dashboard nanti
                             );
                           }
                         }
