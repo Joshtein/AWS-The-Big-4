@@ -44,6 +44,7 @@ export default function News() {
             <TableHead>
               <TableRow>
                 <TableCell>Date</TableCell>
+                <TableCell>University</TableCell>
                 <TableCell>Content</TableCell>
               </TableRow>
             </TableHead>
@@ -51,6 +52,7 @@ export default function News() {
               {newsletter.map((news, index) => (
                 <TableRow key={index}>
                   <TableCell>{moment(news.createdAt).format(`DD MMM YYYY`)}</TableCell>
+                  <TableCell>{news.univName}</TableCell>
                   <TableCell>{news.newsContent}</TableCell>
                 </TableRow>
               ))}
