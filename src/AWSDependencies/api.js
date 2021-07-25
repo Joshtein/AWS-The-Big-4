@@ -764,12 +764,14 @@ format return
 [
         {
             "createdAt": "2021-07-16T19:09:23.511Z",
-            "univName": "UI"
+            "univName": "UI",
+            "newsTitle": "test",
             "newsContent": "Starting from the 1st of January 2020 to ..."
         },
         {
             "createdAt": "2021-07-16T18:54:42.244Z",
-            "univName": "ITB"
+            "univName": "ITB",
+            "newsTitle": "test 2",
             "newsContent": "Starting from the 1st of January 2020 to ..."
         }
 ]
@@ -788,6 +790,7 @@ export const getNews = async()=>{
 /*
 format dataSent
 {
+  "newsTitle": "test 2",
   "newsContent": "Starting from the 1st of January 2020 to ...",
   "univName": "ITB"
 }
