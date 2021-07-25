@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Box, Button, Card, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Box, Button, Card, CardMedia, Grid, Hidden, makeStyles, Typography } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 import HeroImage from "../../assets/HeroImage.png";
 
@@ -10,7 +10,9 @@ const useStyles = makeStyles((theme) => ({
   },
   hero_image: {
     width: "100%",
-    height: "100%"
+    height: "100%",
+    backgroundImage: `url(${HeroImage})`,
+    backgroundSize: "cover",
   },
   hero_description_container: {
     display: "flex",
@@ -22,8 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 function LandingHero({status}) {
   const classes = useStyles();
-  console.log(status);
-  const route = ((status === false) ? "/login":"/calculator");
+  const route = ((status === false) ? "/login" : "/calculator");
   return (
     <Grid container classes={{root: classes.hero}}>
       <Grid item md={6} className={classes.hero_description_container}>
@@ -43,15 +44,9 @@ function LandingHero({status}) {
           </Button>
         </Box>
       </Grid>
-      <Grid item md={6} style={{height: "100%"}}>
-        <Card style={{height: "100%"}}>
-          <CardMedia 
-            image={HeroImage} 
-            title="HeroImage"
-            className={classes.hero_image}
-          />
-        </Card>
-      </Grid>
+      <Hidden smDown>
+        <Grid item md={6} className={classes.hero_image}/>
+      </Hidden>
     </Grid>
   )
 }
