@@ -1,32 +1,32 @@
 import {
-  GET_USER_REQUEST,
-  GET_USER_SUCCESS,
-  GET_USER_FAILURE
-} from './userTypes'
+  GET_UNIV_REQUEST,
+  GET_UNIV_SUCCESS,
+  GET_UNIV_FAILURE
+} from './univTypes'
   
   const initialState = {
     loading: false,
-    userData: {},
+    univData: {},
     error: ''
   }
   
   const reducer = (state = initialState, action) => {
     switch (action.type) {
-      case GET_USER_REQUEST:
+      case GET_UNIV_REQUEST:
         return {
           ...state,
           loading: true
         }
-      case GET_USER_SUCCESS:
+      case GET_UNIV_SUCCESS:
         return {
           loading: false,
-          userData: action.payload,
+          univData: action.payload,
           error: ''
         }
-      case GET_USER_FAILURE:
+      case GET_UNIV_FAILURE:
         return {
           loading: false,
-          userData: {},
+          univData: {},
           error: action.payload
         }
       default: return state
