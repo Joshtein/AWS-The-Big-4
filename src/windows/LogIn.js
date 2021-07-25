@@ -207,7 +207,7 @@ function LogIn({ resUser, resUniv, status, getUserData, getUniversityData, updat
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2" onClick={() => history.push('/')}>
+                <Link href="#" variant="body2" onClick={() => history.push('/signUp')}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
