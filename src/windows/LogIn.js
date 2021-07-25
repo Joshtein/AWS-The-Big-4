@@ -56,6 +56,7 @@ function LogIn({ res, getUserData }) {
   const history = useHistory();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   // const updateUserId = (userId) => {      
   //   dispatch({
@@ -90,7 +91,8 @@ function LogIn({ res, getUserData }) {
                         } else {
                           console.log(attributes);
                           const userId = attributes[1].Value;
-                          
+                          const univStatus = attributes[3].Value;
+                          console.log(univStatus);
                           getUserData(userId);
                           res.loading ? (
                             console.log("Loading")
@@ -98,6 +100,12 @@ function LogIn({ res, getUserData }) {
                             console.log(res.error)
                           ) : (
                             console.log(res.userData));
+                          if(univStatus==='false'){
+                            history.push('/calculator');
+                          }
+                          else{
+                            history.push('/landing');
+                          }
                         }
                     });
                 };
@@ -109,9 +117,9 @@ function LogIn({ res, getUserData }) {
         },
         onFailure: (err) => {
             console.error("onFailure: ", err);
+            setErrorMessage(err.message);
         }
     });
-    history.push('/calculator');
   };
 
   return (
@@ -165,6 +173,15 @@ function LogIn({ res, getUserData }) {
             >
               Sign In
             </Button>
+            {errorMessage && <div className="error"> 
+              <Grid container justifyContent="center">
+                <Grid item>
+                  <Typography variant="body2" color="error" align="center">
+                    {errorMessage} 
+                  </Typography>
+                </Grid>
+              </Grid>
+            </div>}
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

@@ -60,6 +60,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const uuid = generateUUID();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const userCreateApi = async () => {
     const dataSent = {
@@ -86,13 +87,14 @@ export default function SignUp() {
     UserPool.signUp(email, password, [univStatus, uniqueId], null, (err, data)=> {
         if(err){
             console.error(err);
+            setErrorMessage(err.message);
         }
         else{
             userCreateApi();
+            history.push('/login');
         }
         console.log(data);
     });
-    history.push('/login');
   };
 
   return (
@@ -178,6 +180,15 @@ export default function SignUp() {
           >
             Sign Up
           </Button>
+          {errorMessage && <div className="error"> 
+            <Grid container justifyContent="center">
+              <Grid item>
+                <Typography variant="body2" color="error" align="center">
+                  {errorMessage} 
+                </Typography>
+              </Grid>
+            </Grid>
+          </div>}
           <Grid container justifyContent="center">
             <Grid item>
               <Link href="#" variant="body2" onClick={() => history.push('/login')}>
