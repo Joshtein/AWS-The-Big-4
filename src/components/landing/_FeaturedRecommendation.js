@@ -4,7 +4,9 @@ import {Link as RouterLink} from "react-router-dom";
 import { Fragment } from 'react';
 import { connect } from 'react-redux';
 import Title from './Title';
-import FeaturedLoginCardImage from "../../assets/FeaturedRecommendation__Login.png"; 
+import FeaturedLoginCardImage from "../../assets/FeaturedRecommendation__Login.png";
+import FeaturedITB from "../../assets/FeaturedRecommendation__ITB.png";
+import FeaturedUGM from "../../assets/FeaturedRecommendation__UGM.png";
 
 const useStyles = makeStyles((theme) => ({
   cardContainer: {
@@ -30,8 +32,41 @@ function FeaturedRecommendation(props) {
     <Fragment>
       <Title>Featured Recommendation</Title>
       {
-        props.status 
-        ? <></>
+        !props.status 
+        ? <Fragment>
+            <Box mb={2}>
+              <Card variant="outlined" classes={{root: classes.cardContainer}}>
+                <CardMedia
+                  classes={{root: classes.image}}
+                  image={FeaturedITB}
+                />
+                <CardContent>
+                  <Typography variant="body1" align="center">
+                    Institut Teknologi Bandung
+                  </Typography>
+                  <Typography variant="caption" align="center" color="textSecondary" paragraph>
+                    University of the year 2021
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Box>
+            <Box>
+              <Card variant="outlined" classes={{root: classes.cardContainer}}>
+                <CardMedia
+                  classes={{root: classes.image}}
+                  image={FeaturedUGM}
+                />
+                <CardContent>
+                  <Typography variant="body1" align="center">
+                    Universitas Gajah Mada
+                  </Typography>
+                  <Typography variant="caption" align="center" color="textSecondary" paragraph>
+                    University of the year 2020
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Box>
+          </Fragment>
         : <Card variant="outlined" classes={{root: classes.cardContainer}}>
             <CardMedia
               classes={{root: classes.image}}

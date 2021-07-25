@@ -5,6 +5,8 @@ import LandingHero from './_LandingHero';
 import { Box, Grid } from '@material-ui/core';
 import News from './_News';
 import FeaturedRecommendation from './_FeaturedRecommendation';
+import { Fragment } from 'react';
+import Copyright from '../_Copyright';
 
 const useStyles = makeStyles((theme) => ({
   landingInformation: {
@@ -16,9 +18,10 @@ function Landing() {
   const classes = useStyles();
 
   return (
-    <div>
+    <Fragment>
       <LandingNavbar/>
       <LandingHero/>
+      
       <Box p={4} classes={{root: classes.landingInformation}}>
         <Grid container>
           <Grid item md={7}>
@@ -33,7 +36,9 @@ function Landing() {
           </Grid>
         </Grid>
       </Box>
-    </div>
+
+      <Copyright bgColor="#32499E" textColor="white"/>
+    </Fragment>
   )
 }
 

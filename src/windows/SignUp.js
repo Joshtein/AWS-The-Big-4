@@ -15,22 +15,12 @@ import Container from '@material-ui/core/Container';
 import UserPool from '../AWSDependencies/UserPool';
 import { userCreate } from  '../AWSDependencies/api';
 import { useHistory } from 'react-router-dom';
+import Copyright from '../components/_Copyright';
+import { Fragment } from 'react';
+import LandingNavbar from '../components/LandingNavbar';
 
 const crypto = require("crypto");
 const generateUUID = () => crypto.randomBytes(16).toString("hex");
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        College Up!
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -98,109 +88,112 @@ export default function SignUp() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                value = {firstName}
-                onChange = {(event) => {setFirstName(event.target.value)}}
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                value = {lastName}
-                onChange = {(event) => {setLastName(event.target.value)}}
-                autoComplete="lname"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                value = {email}
-                onChange = {(event) => {setEmail(event.target.value)}}
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                value = {password}
-                onChange = {(event) => {setPassword(event.target.value)}}
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={onSubmit}
-          >
-            Sign Up
-          </Button>
-          {errorMessage && <div className="error"> 
-            <Grid container justifyContent="center">
-              <Grid item>
-                <Typography variant="body2" color="error" align="center">
-                  {errorMessage} 
-                </Typography>
+    <Fragment>
+      <LandingNavbar/>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          <form className={classes.form} noValidate>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="fname"
+                  name="firstName"
+                  value = {firstName}
+                  onChange = {(event) => {setFirstName(event.target.value)}}
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  value = {lastName}
+                  onChange = {(event) => {setLastName(event.target.value)}}
+                  autoComplete="lname"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  value = {email}
+                  onChange = {(event) => {setEmail(event.target.value)}}
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="password"
+                  value = {password}
+                  onChange = {(event) => {setPassword(event.target.value)}}
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  label="I want to receive inspiration, marketing promotions and updates via email."
+                />
               </Grid>
             </Grid>
-          </div>}
-          <Grid container justifyContent="center">
-            <Grid item>
-              <Link href="#" variant="body2" onClick={() => history.push('/login')}>
-                Already have an account? Log in
-              </Link>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={onSubmit}
+            >
+              Sign Up
+            </Button>
+            {errorMessage && <div className="error"> 
+              <Grid container justifyContent="center">
+                <Grid item>
+                  <Typography variant="body2" color="error" align="center">
+                    {errorMessage} 
+                  </Typography>
+                </Grid>
+              </Grid>
+            </div>}
+            <Grid container justifyContent="center">
+              <Grid item>
+                <Link href="#" variant="body2" onClick={() => history.push('/login')}>
+                  Already have an account? Log in
+                </Link>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </Container>
+          </form>
+        </div>
+        <Box mt={5}>
+          <Copyright />
+        </Box>
+      </Container>
+    </Fragment>
   );
 }

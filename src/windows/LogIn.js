@@ -19,19 +19,9 @@ import { getUserData } from '../redux/coba';
 import { getUniversityData } from '../redux/coba';
 import { updateStatusLoggedIn } from '../redux/coba';
 import { useHistory } from 'react-router-dom';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        College Up!
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Copyright from '../components/_Copyright';
+import LandingNavbar from '../components/LandingNavbar';
+import { Fragment } from 'react';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -141,83 +131,86 @@ function LogIn({ resUser, resUniv, status, getUserData, getUniversityData, updat
   };
 
   return (
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              value = {email}
-              onChange = {(event) => {setEmail(event.target.value)}}
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              value = {password}
-              onChange = {(event) => {setPassword(event.target.value)}}
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={onSubmit}
-            >
-              Sign In
-            </Button>
-            {errorMessage && <div className="error"> 
-              <Grid container justifyContent="center">
+      <Fragment>
+        <LandingNavbar/>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign in
+            </Typography>
+            <form className={classes.form} noValidate>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                value = {email}
+                onChange = {(event) => {setEmail(event.target.value)}}
+                autoComplete="email"
+                autoFocus
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                value = {password}
+                onChange = {(event) => {setPassword(event.target.value)}}
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={onSubmit}
+              >
+                Sign In
+              </Button>
+              {errorMessage && <div className="error"> 
+                <Grid container justifyContent="center">
+                  <Grid item>
+                    <Typography variant="body2" color="error" align="center">
+                      {errorMessage} 
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </div>}
+              <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
                 <Grid item>
-                  <Typography variant="body2" color="error" align="center">
-                    {errorMessage} 
-                  </Typography>
+                  <Link href="#" variant="body2" onClick={() => history.push('/signUp')}>
+                    {"Don't have an account? Sign Up"}
+                  </Link>
                 </Grid>
               </Grid>
-            </div>}
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2" onClick={() => history.push('/signUp')}>
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
-          </form>
-        </div>
-        <Box mt={8}>
-          <Copyright />
-        </Box>
-      </Container>
+            </form>
+          </div>
+          <Box mt={8}>
+            <Copyright />
+          </Box>
+        </Container>
+      </Fragment>
   );
 }
 
