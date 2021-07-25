@@ -16,6 +16,8 @@ import Container from '@material-ui/core/Container';
 import UserPool from '../AWSDependencies/UserPool';
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import { getUserData } from '../redux/coba';
+import { getUniversityData } from '../redux/coba';
+import { updateStatusLoggedIn } from '../redux/coba';
 import { useHistory } from 'react-router-dom';
 
 function Copyright() {
@@ -51,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function LogIn({ res, getUserData }) {
+function LogIn({ resUser, resUniv, status, getUserData, getUniversityData, updateStatusLoggedIn }) {
   const classes = useStyles();
   const history = useHistory();
   const [password, setPassword] = useState("");
@@ -90,21 +92,36 @@ function LogIn({ res, getUserData }) {
                           console.error(err);
                         } else {
                           console.log(attributes);
-                          const userId = attributes[1].Value;
+                          
                           const univStatus = attributes[3].Value;
                           console.log(univStatus);
-                          getUserData(userId);
-                          res.loading ? (
-                            console.log("Loading")
-                          ) : res.error ? (
-                            console.log(res.error)
-                          ) : (
-                            console.log(res.userData));
+
+                          console.log(status);
+                          updateStatusLoggedIn();
+                          
                           if(univStatus==='false'){
-                            history.push('/calculator');
-                          }
-                          else{
-                            history.push('/landing');
+                            //fetch user data
+                            const userId = attributes[1].Value;
+                            getUserData(userId);
+                            resUser.loading ? (
+                              console.log("Loading")
+                            ) : resUser.error ? (
+                              console.log(resUser.error)
+                            ) : (
+                              console.log(resUser.userData));
+                            history.push('/calculator'); //ganti ke landing page nanti
+                            }
+                            else{
+                            //fetch univ data
+                            const univName = attributes[1].Value;
+                            getUniversityData(univName);
+                            resUniv.loading ? (
+                              console.log("Loading")
+                            ) : resUniv.error ? (
+                              console.log(resUniv.error)
+                            ) : (
+                              console.log(resUniv.univData));
+                            history.push('/landing'); //ganti ke univ dashboard nanti
                           }
                         }
                     });
@@ -205,13 +222,17 @@ function LogIn({ res, getUserData }) {
 
 const mapStateToProps = state => {
   return {
-    res: state.user
+    resUser: state.user,
+    resUniv: state.univ,
+    status: state.statusLoggedIn
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUserData: (userId) => dispatch(getUserData(userId))
+    getUserData: (userId) => dispatch(getUserData(userId)),
+    getUniversityData: (univName) => dispatch(getUniversityData(univName)),
+    updateStatusLoggedIn: () => dispatch(updateStatusLoggedIn())
   }
 }
   
