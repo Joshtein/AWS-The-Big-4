@@ -98,7 +98,7 @@ function LogIn({ resUser, resUniv, status, getUserData, getUniversityData, updat
 
                           console.log(status);
                           updateStatusLoggedIn();
-                          
+
                           if(univStatus==='false'){
                             //fetch user data
                             const userId = attributes[1].Value;
@@ -106,10 +106,11 @@ function LogIn({ resUser, resUniv, status, getUserData, getUniversityData, updat
                             resUser.loading ? (
                               console.log("Loading")
                             ) : resUser.error ? (
-                              console.log(resUser.error)
+                              console.log(resUniv.error)
                             ) : (
-                              console.log(resUser.userData));
-                            history.push('/calculator'); //ganti ke landing page nanti
+                              // console.log(resUniv.univData);
+                              history.push('/calculator') //ganti ke landing page nanti
+                            );
                             }
                             else{
                             //fetch univ data
@@ -120,8 +121,9 @@ function LogIn({ resUser, resUniv, status, getUserData, getUniversityData, updat
                             ) : resUniv.error ? (
                               console.log(resUniv.error)
                             ) : (
-                              console.log(resUniv.univData));
-                            history.push('/landing'); //ganti ke univ dashboard nanti
+                              // console.log(resUniv.univData);
+                              history.push('/landing') //ganti ke univ dashboard nanti
+                            );
                           }
                         }
                     });

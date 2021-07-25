@@ -78,19 +78,19 @@ export default function SignUp() {
     event.preventDefault();
     const univStatus = {
             Name: "custom:univStatus",
-            Value: "true"
+            Value: "false"
         };
-    const univName = {
-            Name: "custom:univName",
-            Value: "ITB"
+    const uniqueId = {
+            Name: "custom:uniqueId",
+            Value: uuid
         };
-    UserPool.signUp(email, password, [univStatus, univName], null, (err, data)=> {
+    UserPool.signUp(email, password, [univStatus, uniqueId], null, (err, data)=> {
         if(err){
             console.error(err);
             setErrorMessage(err.message);
         }
         else{
-            //userCreateApi();
+            userCreateApi();
             history.push('/login');
         }
         console.log(data);
