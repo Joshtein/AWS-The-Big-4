@@ -3,6 +3,14 @@ import axios from 'axios'
 //User Interface API
 
 // Post User Data
+/* 
+format dataSent
+{
+  "userID": event.uuid,
+  "name": event.name,
+  "email": event.email,
+}
+*/
 export const userCreate = async(data)=>{
     try {
         const res= await axios.post("https://bxsg39yshk.execute-api.us-east-1.amazonaws.com/test/userinterface/usercreate",data);
@@ -756,10 +764,12 @@ format return
 [
         {
             "createdAt": "2021-07-16T19:09:23.511Z",
+            "univName": "UI"
             "newsContent": "Starting from the 1st of January 2020 to ..."
         },
         {
             "createdAt": "2021-07-16T18:54:42.244Z",
+            "univName": "ITB"
             "newsContent": "Starting from the 1st of January 2020 to ..."
         }
 ]
