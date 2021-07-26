@@ -62,7 +62,7 @@ export default function News() {
   }, []);
   
   return (
-    <React.Fragment>
+    <Fragment>
       <Title>Indonesia University Newsletter</Title>
       {loading == 0 ? <p>Loading...</p> : null}
 
@@ -84,7 +84,7 @@ export default function News() {
                     <Box pl={1}>
                       <Typography variant="caption" color="textSecondary">University: {news.univName}</Typography>
                     </Box>
-                    <Button variant="secondary">READ MORE</Button>
+                    <Button variant="secondary" href={news.newsLink}>READ MORE</Button>
                   </CardActions>
                 </Card>
               </Box>
@@ -94,6 +94,6 @@ export default function News() {
       }
       
       {[2, 3].indexOf(loading) != -1 ? "No university news yet.." : null}
-    </React.Fragment>
+    </Fragment>
   );
 }

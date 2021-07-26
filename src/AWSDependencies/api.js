@@ -766,13 +766,15 @@ format return
             "createdAt": "2021-07-16T19:09:23.511Z",
             "univName": "UI",
             "newsTitle": "test",
-            "newsContent": "Starting from the 1st of January 2020 to ..."
+            "newsContent": "Starting from the 1st of January 2020 to ...",
+            "univLink": "https://itb.ac.id/beasiswa"
         },
         {
             "createdAt": "2021-07-16T18:54:42.244Z",
             "univName": "ITB",
             "newsTitle": "test 2",
-            "newsContent": "Starting from the 1st of January 2020 to ..."
+            "newsContent": "Starting from the 1st of January 2020 to ...",
+            "newsLink": "https://itb.ac.id/beasiswa"
         }
 ]
 */
@@ -792,7 +794,8 @@ format dataSent
 {
   "newsTitle": "test 2",
   "newsContent": "Starting from the 1st of January 2020 to ...",
-  "univName": "ITB"
+  "univName": "ITB",
+  "newsLink": "https://itb.ac.id/beasiswa"
 }
 */
 export const newsCreate = async(dataSent)=>{
