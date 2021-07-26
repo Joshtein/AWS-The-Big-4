@@ -66,8 +66,14 @@ function Universities() {
 
   useEffect(() => {
     getListOfUniversities().then(data => {
-      setUnivList(data);
-      setStatus(1);
+      if (data.length > 0) {
+        setUnivList(data);
+        setStatus(1);
+      } else {
+        setStatus(3);
+      }
+    }).catch(() => {
+      setStatus(2);
     })
   }, [])
 
@@ -166,6 +172,14 @@ function Universities() {
               })
             }
           </Fragment>
+          : null
+        }
+
+        {
+          [2, 3].indexOf(status) != -1
+          ? <Typography align="center" variant="body1" color="textSecondary">
+              No university data to be shown...
+            </Typography>
           : null
         }
         
