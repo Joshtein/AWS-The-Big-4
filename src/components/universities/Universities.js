@@ -143,7 +143,7 @@ function Universities() {
                                                     </ListItemAvatar>
                                                     <ListItemText 
                                                       primary={data.majorName}
-                                                      secondary={`Budget: ${data.budget}`}
+                                                      secondary={`Budget: Rp${(data.budget).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')},-`}
                                                     />
                                                   </ListItem>
                                                 )
