@@ -171,6 +171,42 @@ function Universities() {
         
       </Box>
 
+      {/* <Card>
+          <CardContent>
+            <Grid container>
+              <Grid item md={7}>
+                <Box p={2}>
+                  <Typography variant="h6">
+                    1. ITB
+                  </Typography>
+                  <Typography variant="body1" color="textSecondary" paragraph>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias alias accusamus dicta ducimus eaque possimus omnis veniam soluta, voluptatem, quo, sint nemo itaque nisi perferendis praesentium. Dolores explicabo rerum quis.
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item md={1}/>
+              <Grid item md={4}>
+                <Box p={2}>
+                  <Typography variant="overline">
+                    Available Majors
+                  </Typography>
+                  <List dense>
+                    <ListItem>
+                      <ListItemAvatar>
+                        <Avatar variant="square">A</Avatar>
+                      </ListItemAvatar>
+                      <ListItemText 
+                        primary="Teknik Elektro"
+                        secondary="Accreditation: A"
+                      />
+                    </ListItem>
+                  </List>
+                </Box>
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card> */}
+
     </Fragment>
   )
 };
