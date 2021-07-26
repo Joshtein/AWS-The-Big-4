@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 function LandingHero({status}) {
   const classes = useStyles();
-  const route = ((status === false) ? "/login" : "/calculator");
+  const route = ((status === false) ? "/login" : "/recommendation");
   return (
     <Grid container classes={{root: classes.hero}}>
       <Grid item md={6} className={classes.hero_description_container}>

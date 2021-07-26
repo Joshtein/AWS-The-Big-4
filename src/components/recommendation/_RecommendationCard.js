@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Card, CardActions, CardContent, TextField, Typography } from '@material-ui/core';
+import { Box, Button, Card, CardActions, CardContent, TextField, Typography, Grid } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { getListOfMajorsInMajorGroup, getListOfUniversities } from '../../AWSDependencies/api';
 import { connect } from 'react-redux';
+import { updateRecommendationParams } from '../../redux/coba';
 
 function RecommendationCard(props) {
   const [uniList, setUniList] = useState([]);
   const [majorList, setMajorList] = useState([]);
+  const [majorName, setMajorName] = useState(null);
+  const [universityName, setUniversityName] = useState(null);
+  const [budget, setBudget] = useState(0);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     getListOfUniversities()
       .then(data => {
         setUniList([...data.map(uni => uni.universityName)]);
       })
-      
-    if (props.majorGroup) {
-      getListOfMajorsInMajorGroup({majorGroup: props.majorGroup})
+    if (props.res.majorGroup) {
+      getListOfMajorsInMajorGroup({majorGroup: props.res.majorGroup})
         .then(data => {
-          setMajorList(data)
+          setMajorList([...data.map(major => major.majorName)])
         })
     } else {
       (async function() {
@@ -32,8 +36,26 @@ function RecommendationCard(props) {
     }
   }, [])
 
+  const  onSubmit = (event) => {
+    event.preventDefault();
+    if((majorName === null) || (majorName === "")){
+      setErrorMessage("Fill required fields!");
+    }
+    else{
+      setErrorMessage("");
+      const params = {
+        updated: true,
+        reRender: !props.rec,
+        majorName: majorName,
+        universityName: universityName,
+        budget: budget
+      }
+      props.updateRecommendationParams(params);
+    }
+  }
+
   return (
-    <Card {...props}>
+    <Card className={props.classes.root} variant={props.variant}>
       <Box p={2}>
         <CardContent>
           <Typography variant="h5" paragraph>
@@ -48,7 +70,8 @@ function RecommendationCard(props) {
               <Autocomplete
                 options={majorList}
                 getOptionLabel={(option) => option}
-                renderInput={(params) => <TextField {...params} label="Major" variant="outlined" />}
+                onChange={(event, value) => {setMajorName(value)}}
+                renderInput={(params) => <TextField {...params} label="Major" variant="outlined" required={true} />}
               />
             </Box>
 
@@ -56,16 +79,28 @@ function RecommendationCard(props) {
               <Autocomplete
                 options={uniList}
                 getOptionLabel={(option) => option}
+                onChange={(event, value) => {setUniversityName(value)}}
                 renderInput={(params) => <TextField {...params} label="University" variant="outlined" />}
               />
             </Box>
 
-            <TextField label="Budget" variant="outlined" />
+            <TextField label="Budget" variant="outlined" value={budget} onChange={(event) => {setBudget(event.target.value)}}  />
           </form>
         </CardContent>
         <CardActions style={{display: "flex", justifyContent: "center"}}>
           <Box p={3}>
-            <Button color="primary" variant="contained">Get Recommendation!</Button>
+            <Button color="primary" variant="contained" onClick={onSubmit}>Get Recommendation!</Button>
+            {errorMessage && <div className="error"> 
+              <Box p={1}>
+                <Grid container justifyContent="center" spacing={5}>
+                  <Grid item>
+                    <Typography variant="body2" color="error" align="center">
+                      {errorMessage} 
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Box>
+            </div>}
           </Box>
         </CardActions>
       </Box>
@@ -75,8 +110,15 @@ function RecommendationCard(props) {
 
 const mapStateToProps = state => {
   return {
-    majorGroup: state?.userData?.majorGroup
+    res: state.user.userData,
+    rec: state.user.recommendParams.reRender
   }
 }
 
-export default connect(mapStateToProps)(RecommendationCard);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateRecommendationParams: (params) => dispatch(updateRecommendationParams(params))
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(RecommendationCard);

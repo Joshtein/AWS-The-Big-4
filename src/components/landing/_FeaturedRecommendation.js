@@ -32,7 +32,7 @@ function FeaturedRecommendation(props) {
     <Fragment>
       <Title>Featured Recommendation</Title>
       {
-        !props.status 
+        props.status 
         ? <Fragment>
             <Box mb={2}>
               <Card variant="outlined" classes={{root: classes.cardContainer}}>

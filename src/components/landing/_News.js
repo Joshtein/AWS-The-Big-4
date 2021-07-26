@@ -84,7 +84,7 @@ export default function News() {
                     <Box pl={1}>
                       <Typography variant="caption" color="textSecondary">University: {news.univName}</Typography>
                     </Box>
-                    <Button variant="secondary" href={news.newsLink}>READ MORE</Button>
+                    <Button color="secondary" href={news.newsLink}>READ MORE</Button>
                   </CardActions>
                 </Card>
               </Box>

@@ -7,6 +7,7 @@ import HeroImage from "../../assets/RecommendationHero.jpg";
 import FeaturedLoginCardImage from "../../assets/FeaturedRecommendation__Login.png";
 import { connect } from 'react-redux';
 import RecommendationCard from './_RecommendationCard';
+import RecommendationHero from './_RecommendationHero';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -51,6 +52,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Recommendation(props) {
   const classes = useStyles();
+  console.log(props.status);
+
   return (
     <Fragment>
       <LandingNavbar/>
@@ -58,7 +61,7 @@ function Recommendation(props) {
       <Grid item md={6}>
         <Box p={8} className={classes.hero_description}>
         {
-          !props.status
+          props.status
           ? <RecommendationCard variant="outlined" classes={{root: classes.cardHeroContainer}}/>
           : <Card variant="outlined" classes={{root: classes.cardHeroContainer}}>
               <CardMedia
@@ -75,19 +78,29 @@ function Recommendation(props) {
               </CardActions>
             </Card>
         }
+        
         </Box>
       </Grid>
       <Hidden smDown>
         <Grid item md={6} className={classes.hero_image}/>
       </Hidden>
     </Grid>
+    <Box p={8} className={classes.hero_description}>
+      {
+        props.user.recommendParams.updated
+        ? <RecommendationHero variant="outlined" classes={{root: classes.cardHeroContainer}}/>
+        : 
+        null
+      }
+    </Box>
     </Fragment>
   )
 }
 
 const mapStateToProps = state => {
   return {
-    status: state.statusLoggedIn
+    status: state.statusLoggedIn,
+    user: state.user
   }
 }
 

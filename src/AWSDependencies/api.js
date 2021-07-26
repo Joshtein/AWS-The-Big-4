@@ -1062,6 +1062,7 @@ export const getUnivPopularityData = async(dataSent)=>{
 //Update All Univ Major
 /*
 format dataSent
+*harus ada saintek dan soshum walaupun array kosong!!!
 {
   "universityName": "ITB",
   "majorGroup": [

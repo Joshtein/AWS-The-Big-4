@@ -2,7 +2,8 @@ import { userGet } from  '../../AWSDependencies/api'
 import {
   GET_USER_REQUEST,
   GET_USER_SUCCESS,
-  GET_USER_FAILURE
+  GET_USER_FAILURE,
+  UPDATE_REC_PARAMS
 } from './userTypes'
 
 export const getUserData = (id) => {
@@ -44,5 +45,12 @@ export const getUserDataFailure = error => {
   return {
     type: GET_USER_FAILURE,
     payload: error
+  }
+}
+
+export const updateRecommendationParams = params => {
+  return{
+    type: UPDATE_REC_PARAMS,
+    payload: params
   }
 }
