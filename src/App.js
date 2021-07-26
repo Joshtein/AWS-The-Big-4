@@ -15,6 +15,7 @@ import Landing from "./components/landing/Landing"
 import Calculator from "./components/Calculate/Calculate"
 import Universities from './components/universities/Universities';
 import Majors from './components/majors/Majors';
+import Recommendation from './components/recommendation/Recommendation';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route exact path="/calculator" component={Calculator} />
             <Route exact path="/universities" component={Universities} />
             <Route exact path="/majors" component={Majors} />
+            <Route exact path="/recommendation" component={Recommendation} />
             {/* <Route exact path="/result" component={ResultCalculator} /> */}
           </Switch>
         </div>
