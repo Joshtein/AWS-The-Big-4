@@ -146,16 +146,16 @@ function RecommendationHero(props) {
                                     
                                     <Grid item md={2}>
                                         <Box p={2}>
-                                        {(rec.grade).length < 2 ?
-                                            <Avatar size className={
+                                        {(rec.grade)?.length < 2 
+                                            ? <Avatar size className={
                                                 rec.grade === "A" ? classes.green :
                                                 rec.grade === "B" ? classes.orange :
                                                 rec.grade === "C" ? classes.deepOrange :
                                                 classes.red
                                             }>
                                                 {rec.grade}
-                                            </Avatar> :
-                                            <Typography variant="subtitle2" color="error" align="center">
+                                            </Avatar> 
+                                            : <Typography variant="subtitle2" color="error" align="center">
                                                 {rec.grade}
                                             </Typography>
                                         }
