@@ -155,54 +155,54 @@ function RecommendationCard(props) {
         props.updateStatus
         ?
         <Box p={1} width="100%"> 
-            <Typography variant="h6" color="primay" align="center">
+            <Typography variant="h6" align="center">
               Keterangan Hasil Prediksi
             </Typography>
             <Grid container className={classes.grade}>
               <Grid item md={6} className={classes.predictionScore} >
                 <Box p={2}>
-                  <Avatar size className={classes.green}>
+                  <Avatar className={classes.green}>
                     A
                   </Avatar>
                 </Box>
                 <Box p={2}>
-                  <Typography variant="body2" align="flex-start">
+                  <Typography variant="body2" align="left">
                     Sangat mungkin
                   </Typography>
                 </Box>
               </Grid>
               <Grid item md={6} className={classes.predictionScore} >
                 <Box p={2}>
-                  <Avatar size className={classes.orange}>
+                  <Avatar className={classes.orange}>
                     B
                   </Avatar>
                 </Box>
                 <Box p={2}>
-                  <Typography variant="body2" align="flex-start">
+                  <Typography variant="body2" align="left">
                     Di atas rata-rata
                   </Typography>
                 </Box>
               </Grid>
               <Grid item md={6} className={classes.predictionScore}>
                 <Box p={2}>
-                  <Avatar size className={classes.deepOrange}>
+                  <Avatar className={classes.deepOrange}>
                     C
                   </Avatar>
                 </Box>
                 <Box p={2}>
-                  <Typography variant="body2" align="flex-start">
+                  <Typography variant="body2" align="left">
                     Minimum
                   </Typography>
                 </Box>
               </Grid>
               <Grid item md={6} className={classes.predictionScore}>
                 <Box p={2}>
-                  <Avatar size className={classes.red}>
+                  <Avatar className={classes.red}>
                     F
                   </Avatar>
                 </Box>
                 <Box p={2}>
-                  <Typography variant="body2" align="flex-start">
+                  <Typography variant="body2" align="left">
                     Tidak memenuhi syarat minimum
                   </Typography>
                 </Box>

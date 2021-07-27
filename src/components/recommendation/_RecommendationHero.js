@@ -165,7 +165,7 @@ function RecommendationHero(props) {
                                             </Box>
                                             <Box p={2}>
                                             {(rec.grade).length < 2 ?
-                                                <Avatar size className={
+                                                <Avatar className={
                                                     rec.grade === "A" ? classes.green :
                                                     rec.grade === "B" ? classes.orange :
                                                     rec.grade === "C" ? classes.deepOrange :
