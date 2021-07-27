@@ -78,7 +78,6 @@ function Recommendation(props) {
               </CardActions>
             </Card>
         }
-        
         </Box>
       </Grid>
       <Hidden smDown>

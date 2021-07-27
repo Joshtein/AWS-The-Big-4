@@ -158,7 +158,7 @@ function RecommendationHero(props) {
                                         </Grid>
                                         
                                         <Grid item md={5} className={classes.predictionScore}>
-                                             <Box p={3}>
+                                            <Box p={3}>
                                                 <Typography variant="h6" color="textPrimary" align="center">
                                                     Prediction Score
                                                 </Typography>

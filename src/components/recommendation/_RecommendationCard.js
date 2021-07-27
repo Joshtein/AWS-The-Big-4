@@ -1,9 +1,55 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Card, CardActions, CardContent, TextField, Typography, Grid } from '@material-ui/core';
+import { Box, Button, Card, CardActions, CardContent, TextField, Typography, Grid, makeStyles, Avatar } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { getListOfMajorsInMajorGroup, getListOfUniversities } from '../../AWSDependencies/api';
 import { connect } from 'react-redux';
 import { updateRecommendationParams } from '../../redux/coba';
+import { green, orange, deepOrange, red } from '@material-ui/core/colors';
+
+const useStyle = makeStyles((theme) => ({
+  
+  green: {
+    color: theme.palette.getContrastText(green[600]),
+    backgroundColor: green[600],
+    width: theme.spacing(5),
+    height: theme.spacing(5),
+  },
+
+  orange: {
+    color: theme.palette.getContrastText(orange[800]),
+    backgroundColor: orange[800],
+    width: theme.spacing(5),
+    height: theme.spacing(5),
+  },
+
+  deepOrange: {
+    color: theme.palette.getContrastText(deepOrange[500]),
+    backgroundColor: deepOrange[500],
+    width: theme.spacing(5),
+    height: theme.spacing(5),
+  },
+  
+  red: {
+    color: theme.palette.getContrastText(red[500]),
+    backgroundColor: red[500],
+    width: theme.spacing(5),
+    height: theme.spacing(5),
+  },
+
+  predictionScore: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-start"
+  },
+
+  grade: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
+},
+}))
+
 
 function RecommendationCard(props) {
   const [uniList, setUniList] = useState([]);
@@ -12,6 +58,7 @@ function RecommendationCard(props) {
   const [universityName, setUniversityName] = useState(null);
   const [budget, setBudget] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
+  const classes = useStyle();
 
   useEffect(() => {
     getListOfUniversities()
@@ -104,14 +151,76 @@ function RecommendationCard(props) {
           </Box>
         </CardActions>
       </Box>
-    </Card>
+      {
+        props.updateStatus
+        ?
+        <Box p={1} width="100%"> 
+            <Typography variant="h6" color="primay" align="center">
+              Keterangan Hasil Prediksi
+            </Typography>
+            <Grid container className={classes.grade}>
+              <Grid item md={6} className={classes.predictionScore} >
+                <Box p={2}>
+                  <Avatar size className={classes.green}>
+                    A
+                  </Avatar>
+                </Box>
+                <Box p={2}>
+                  <Typography variant="body2" align="flex-start">
+                    Sangat mungkin
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item md={6} className={classes.predictionScore} >
+                <Box p={2}>
+                  <Avatar size className={classes.orange}>
+                    B
+                  </Avatar>
+                </Box>
+                <Box p={2}>
+                  <Typography variant="body2" align="flex-start">
+                    Di atas rata-rata
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item md={6} className={classes.predictionScore}>
+                <Box p={2}>
+                  <Avatar size className={classes.deepOrange}>
+                    C
+                  </Avatar>
+                </Box>
+                <Box p={2}>
+                  <Typography variant="body2" align="flex-start">
+                    Minimum
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item md={6} className={classes.predictionScore}>
+                <Box p={2}>
+                  <Avatar size className={classes.red}>
+                    F
+                  </Avatar>
+                </Box>
+                <Box p={2}>
+                  <Typography variant="body2" align="flex-start">
+                    Tidak memenuhi syarat minimum
+                  </Typography>
+                </Box>
+            </Grid>
+          </Grid>
+        </Box>
+        :
+        null
+      }
+  </Card>
   );
 }
 
 const mapStateToProps = state => {
   return {
     res: state.user.userData,
-    rec: state.user.recommendParams.reRender
+    rec: state.user.recommendParams.reRender,
+    updateStatus: state.user.recommendParams.updated
   }
 }
 
