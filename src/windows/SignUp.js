@@ -84,9 +84,9 @@ function SignUp({ resUser, getUserData, updateStatusLoggedIn }) {
         }
         else{
           (async function() {
-            let data = await userCreateApi();;
-            let coba = await getUserData(uuid);;
-            let tunggu = await updateStatusLoggedIn();
+            await userCreateApi();;
+            await getUserData(uuid);;
+            await updateStatusLoggedIn();
             history.push('/student-dashboard');
           })();
         }
