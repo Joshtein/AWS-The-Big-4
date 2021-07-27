@@ -85,10 +85,11 @@ function Recommendation(props) {
         <Grid item md={6} className={classes.hero_image}/>
       </Hidden>
     </Grid>
-    <Box p={8} className={classes.hero_description}>
+    <Box p={8} className={classes.hero_description} >
       {
         props.user.recommendParams.updated
-        ? <RecommendationHero variant="outlined" classes={{root: classes.cardHeroContainer}}/>
+        ? 
+        <RecommendationHero variant="outlined" classes={{root: classes.cardHeroContainer}}/>
         : 
         null
       }
