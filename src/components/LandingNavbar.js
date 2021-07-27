@@ -5,6 +5,9 @@ import { AppBar, Box, Button, Divider, Hidden, IconButton, List, ListItem, ListI
 import MenuIcon from '@material-ui/icons/Menu';
 import { AccountCircle, Dashboard, Feedback, School, Work } from '@material-ui/icons';
 import { connect } from 'react-redux';
+import { updateLogOut } from '../redux/coba';
+import { useHistory } from 'react-router-dom';
+import { updateRecommendationParams } from '../redux/coba';
 
 const useStyles = makeStyles((theme) => ({
   navbar: {
@@ -42,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 function LandingNavbar(props) {
   const classes = useStyles();
+  const history = useHistory();
   const [openDrawer, setOpenDrawer] = useState(false);
   const toggleDrawer = (open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -50,6 +54,17 @@ function LandingNavbar(props) {
 
     setOpenDrawer(open);
   }
+
+  const logOut = (event) => {
+    event.preventDefault();
+    props.updateLogOut();
+    const params = {
+      updated: false,
+    }
+    props.updateRecommendationParams(params);
+    history.push('/login')
+  }
+
   return (
     <AppBar position="static">
       <Toolbar classes={{root: classes.navbar}}>
@@ -83,7 +98,7 @@ function LandingNavbar(props) {
                   <Button component={RouterLink} to="/student-dashboard" color="inherit" classes={{root: classes.navbar_link_item}}>
                     Dashboard
                   </Button>
-                  <Button component={RouterLink} to="/logout" color="inherit" classes={{root: classes.navbar_link_item}}>
+                  <Button color="inherit" classes={{root: classes.navbar_link_item}} onClick={logOut}>
                     Logout
                   </Button>
                 </>
@@ -145,4 +160,11 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(LandingNavbar);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateLogOut: () => dispatch(updateLogOut()),
+    updateRecommendationParams: (params) => dispatch(updateRecommendationParams(params))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LandingNavbar);

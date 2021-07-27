@@ -42,11 +42,6 @@ const useStyle = makeStyles((theme) => ({
         alignItems: "center",
         justifyContent: "flex-end"
     },
-
-    iconSize: {
-        width: 20,
-        height: 20
-    },
   }))
 
 function RecommendationHero(props) {
@@ -152,7 +147,7 @@ function RecommendationHero(props) {
                                             </Box>
                                             <Box p={2}>
                                                 <Grid item xs={10}>
-                                                    <IconButton iconStyle={classes.iconSize}>
+                                                    <IconButton>
                                                         <FavoriteIcon/>
                                                     </IconButton>
                                                     <IconButton>
