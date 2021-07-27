@@ -100,7 +100,7 @@ function RecommendationHero(props) {
   return (
     <Grid container>
         <Grid item md={9}>
-            <Box p={2}>
+            <Box p={2} mt={1}>
                 <Typography variant="h5" paragraph align="center">
                     Top Recommendation: {props.res.recommendParams.majorName}
                 </Typography>
@@ -146,16 +146,16 @@ function RecommendationHero(props) {
                                     
                                     <Grid item md={2}>
                                         <Box p={2}>
-                                        {(rec.grade)?.length < 2 
-                                            ? <Avatar size className={
+                                        {(rec.grade).length < 2 ?
+                                            <Avatar size className={
                                                 rec.grade === "A" ? classes.green :
                                                 rec.grade === "B" ? classes.orange :
                                                 rec.grade === "C" ? classes.deepOrange :
                                                 classes.red
                                             }>
                                                 {rec.grade}
-                                            </Avatar> 
-                                            : <Typography variant="subtitle2" color="error" align="center">
+                                            </Avatar> :
+                                            <Typography variant="subtitle2" color="error" align="center">
                                                 {rec.grade}
                                             </Typography>
                                         }
