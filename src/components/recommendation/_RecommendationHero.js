@@ -46,6 +46,8 @@ function RecommendationHero(props) {
   const classes = useStyle();
 
   useEffect(() => {
+    const elmnt = document.getElementById("result");
+    elmnt.scrollIntoView({behavior: "smooth"});
     setStatus(0);
     if(props.res.recommendParams.universityName === null){
         const dataSent = {
@@ -84,7 +86,7 @@ function RecommendationHero(props) {
         }).catch(() => {
         setStatus(2);
         })
-    }
+    };
   }, [props.res.recommendParams.reRender])
 
 // loading: false,
@@ -98,95 +100,97 @@ function RecommendationHero(props) {
 //     error: ''
     
   return (
-    <Grid container>
-        <Grid item md={9}>
-            <Box p={2}>
-                <Typography variant="h5" paragraph align="center">
-                    Top Recommendation: {props.res.recommendParams.majorName}
-                </Typography>
-                {
-                status === 0
-                ? <Typography align="center" variant="body1" color="textSecondary">
-                    Please wait, fetching data from server...
+    <div id="result">
+        <Grid container>
+            <Grid item md={9}>
+                <Box p={2} mt={1}>
+                    <Typography variant="h5" paragraph align="center">
+                        Top Recommendation: {props.res.recommendParams.majorName}
                     </Typography>
-                : null
-                }
-
-                {
-                status === 1
-                ? <Fragment>
                     {
-                    recList.map((rec, index) => {
-                        return (
-                        <Box mb={4} key={index}>
-                            <Card>
-                            <CardContent>
-                                <Grid container>
-                                    <Grid item md={7}>
-                                        <Box p={2}>
-                                        <Typography variant="h4">
-                                            {index + 1}. {rec.name}
-                                        </Typography>
-                                        <Typography variant="body1" color="textSecondary" paragraph>
-                                            {rec.univDesc || "No Description"}
-                                        </Typography>
-                                        <Typography variant="body2" color="textPrimary" paragraph>
-                                            Akreditasi Jurusan: {rec.accreditation || "No Accreditation"}
-                                        </Typography>
-                                        </Box>
-                                    </Grid>
-
-                                    <Grid item md={3}>
-                                        <Box p={3}>
-                                            <Typography variant="h6" color="textPrimary" align="center">
-                                                Prediction Score
-                                            </Typography>
-                                        </Box>
-                                    </Grid>
-                                    
-                                    <Grid item md={2}>
-                                        <Box p={2}>
-                                        {(rec.grade)?.length < 2 
-                                            ? <Avatar size className={
-                                                rec.grade === "A" ? classes.green :
-                                                rec.grade === "B" ? classes.orange :
-                                                rec.grade === "C" ? classes.deepOrange :
-                                                classes.red
-                                            }>
-                                                {rec.grade}
-                                            </Avatar> 
-                                            : <Typography variant="subtitle2" color="error" align="center">
-                                                {rec.grade}
-                                            </Typography>
-                                        }
-                                        </Box>
-                                    </Grid>
-                                </Grid>
-                            </CardContent>
-                            </Card>
-                        </Box>
-                        )
-                    })
+                    status === 0
+                    ? <Typography align="center" variant="body1" color="textSecondary">
+                        Please wait, fetching data from server...
+                        </Typography>
+                    : null
                     }
-                </Fragment>
-                : null
-                }
 
-                {
-                [2, 3].indexOf(status) != -1
-                ? <Typography align="center" variant="body1" color="textSecondary">
-                    No recommendation to be shown...
-                    </Typography>
-                : null
-                }
+                    {
+                    status === 1
+                    ? <Fragment>
+                        {
+                        recList.map((rec, index) => {
+                            return (
+                            <Box mb={4} key={index}>
+                                <Card>
+                                <CardContent>
+                                    <Grid container>
+                                        <Grid item md={7}>
+                                            <Box p={2}>
+                                            <Typography variant="h4">
+                                                {index + 1}. {rec.name}
+                                            </Typography>
+                                            <Typography variant="body1" color="textSecondary" paragraph>
+                                                {rec.univDesc || "No Description"}
+                                            </Typography>
+                                            <Typography variant="body2" color="textPrimary" paragraph>
+                                                Akreditasi Jurusan: {rec.accreditation || "No Accreditation"}
+                                            </Typography>
+                                            </Box>
+                                        </Grid>
+
+                                        <Grid item md={3}>
+                                            <Box p={3}>
+                                                <Typography variant="h6" color="textPrimary" align="center">
+                                                    Prediction Score
+                                                </Typography>
+                                            </Box>
+                                        </Grid>
+                                        
+                                        <Grid item md={2}>
+                                            <Box p={2}>
+                                            {(rec.grade).length < 2 ?
+                                                <Avatar size className={
+                                                    rec.grade === "A" ? classes.green :
+                                                    rec.grade === "B" ? classes.orange :
+                                                    rec.grade === "C" ? classes.deepOrange :
+                                                    classes.red
+                                                }>
+                                                    {rec.grade}
+                                                </Avatar> :
+                                                <Typography variant="subtitle2" color="error" align="center">
+                                                    {rec.grade}
+                                                </Typography>
+                                            }
+                                            </Box>
+                                        </Grid>
+                                    </Grid>
+                                </CardContent>
+                                </Card>
+                            </Box>
+                            )
+                        })
+                        }
+                    </Fragment>
+                    : null
+                    }
+
+                    {
+                    [2, 3].indexOf(status) != -1
+                    ? <Typography align="center" variant="body1" color="textSecondary">
+                        No recommendation to be shown...
+                        </Typography>
+                    : null
+                    }
+                </Box>
+            </Grid>
+            <Grid item md={3}>
+            <Box p={3}>
+                <FeaturedRecommendation/>
             </Box>
+            </Grid>
         </Grid>
-        <Grid item md={3}>
-        <Box p={3}>
-            <FeaturedRecommendation/>
-        </Box>
-        </Grid>
-    </Grid>
+    </div>
   );
 }
 
