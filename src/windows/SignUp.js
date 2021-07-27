@@ -80,7 +80,7 @@ function SignUp({ resUser, getUserData, updateStatusLoggedIn }) {
     UserPool.signUp(email, password, [univStatus, uniqueId], null, (err, data)=> {
         if(err){
             console.error(err);
-            setErrorMessage(err.message);
+            setErrorMessage("Password length at least eight characters with a minimum of one uppercase character, symbol, and number.");
         }
         else{
             userCreateApi();
