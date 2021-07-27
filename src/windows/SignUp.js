@@ -83,10 +83,12 @@ function SignUp({ resUser, getUserData, updateStatusLoggedIn }) {
             setErrorMessage("Password length at least eight characters with a minimum of one uppercase character, symbol, and number.");
         }
         else{
-            userCreateApi();
-            getUserData(uuid);
-            updateStatusLoggedIn();
+          (async function() {
+            let data = await userCreateApi();;
+            let coba = await getUserData(uuid);;
+            let tunggu = await updateStatusLoggedIn();
             history.push('/student-dashboard');
+          })();
         }
         console.log(data);
     });
