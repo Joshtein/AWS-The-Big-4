@@ -212,6 +212,7 @@ function StudentDashboard(props) {
       //console.log(dataSent);
       userUpdateApi(dataSent);
       props.getUserData(props.user.userData.userID);
+      history.push('/');
     }
     else{
       const dataSent = {
