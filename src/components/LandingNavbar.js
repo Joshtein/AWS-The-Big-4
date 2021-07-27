@@ -80,7 +80,7 @@ function LandingNavbar(props) {
             {
               props.status
               ? <>
-                  <Button component={RouterLink} to="/calculator" color="inherit" classes={{root: classes.navbar_link_item}}>
+                  <Button component={RouterLink} to="/student-dashboard" color="inherit" classes={{root: classes.navbar_link_item}}>
                     Dashboard
                   </Button>
                   <Button component={RouterLink} to="/logout" color="inherit" classes={{root: classes.navbar_link_item}}>
@@ -119,7 +119,7 @@ function LandingNavbar(props) {
           {
             props.status
             ? <>
-                <ListItem button component={RouterLink} to="/calculator" classes={{root: classes.navbar_link_list_item}}>
+                <ListItem button component={RouterLink} to="/student-dashboard" classes={{root: classes.navbar_link_list_item}}>
                   <ListItemIcon children={<Dashboard/>}/>
                   <ListItemText primary="Dashboard"/>
                 </ListItem>

@@ -16,6 +16,7 @@ import Calculator from "./components/Calculate/Calculate"
 import Universities from './components/universities/Universities';
 import Majors from './components/majors/Majors';
 import Recommendation from './components/recommendation/Recommendation';
+import StudentDashboard from './components/studentDashboard/StudentDashboard';
 
 function App() {
   return (
@@ -26,10 +27,12 @@ function App() {
             <Route exact path="/" component={Landing} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/login" component={LogIn} />
-            <Route exact path="/calculator" component={Calculator} />
+            <Route exact path="/student-dashboard" component={StudentDashboard} />
             <Route exact path="/universities" component={Universities} />
             <Route exact path="/majors" component={Majors} />
             <Route exact path="/recommendation" component={Recommendation} />
+            
+            <Route exact path="/calculator" component={Calculator} />
             {/* <Route exact path="/result" component={ResultCalculator} /> */}
           </Switch>
         </div>
