@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import LandingNavbar from '../LandingNavbar';
 import Copyright from '../_Copyright';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { SentimentDissatisfiedRounded } from '@material-ui/icons';
 import HeroImage from "../../assets/RecommendationHero.jpg";
 import FeaturedLoginCardImage from "../../assets/FeaturedRecommendation__Login.png";
@@ -56,7 +57,7 @@ const useStyle = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
   },
-  
+
   image: {
     minHeight: "280px",
     width: "100%",
@@ -154,6 +155,7 @@ const mapelArray = [
 
 function StudentDashboard(props) {
   const classes = useStyle();
+  const history = useHistory();
   // 0 = saintek
   // 1 = soshum
   const [majorGroup, setMajorGroup] = useState(0);
@@ -238,6 +240,7 @@ function StudentDashboard(props) {
       //console.log(dataSent);
       userUpdateApi(dataSent);
       props.getUserData(props.user.userData.userID);
+      history.push('/');
     }
   }
   
