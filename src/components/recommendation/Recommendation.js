@@ -70,7 +70,7 @@ function Recommendation(props) {
               />
               <CardContent>
                 <Typography variant="body1" align="center" paragraph>
-                  You need to sign up for get the accurate university recommendation
+                  You need to sign up to get the accurate university recommendation
                 </Typography>
               </CardContent>
               <CardActions classes={{root: classes.content}}>

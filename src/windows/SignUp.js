@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { connect } from 'react-redux'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -18,6 +19,8 @@ import { useHistory } from 'react-router-dom';
 import Copyright from '../components/_Copyright';
 import { Fragment } from 'react';
 import LandingNavbar from '../components/LandingNavbar';
+import { getUserData } from '../redux/coba';
+import { updateStatusLoggedIn } from '../redux/coba';
 
 const crypto = require("crypto");
 const generateUUID = () => crypto.randomBytes(16).toString("hex");
@@ -42,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+function SignUp({ resUser, getUserData, updateStatusLoggedIn }) {
   const classes = useStyles();
   const history = useHistory();
   const [firstName, setFirstName] = useState("");
@@ -81,7 +84,9 @@ export default function SignUp() {
         }
         else{
             userCreateApi();
-            history.push('/login');
+            getUserData(uuid);
+            updateStatusLoggedIn();
+            history.push('/student-dashboard');
         }
         console.log(data);
     });
@@ -197,3 +202,19 @@ export default function SignUp() {
     </Fragment>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    resUser: state.user,
+    status: state.statusLoggedIn
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUserData: (userId) => dispatch(getUserData(userId)),
+    updateStatusLoggedIn: () => dispatch(updateStatusLoggedIn())
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(SignUp);

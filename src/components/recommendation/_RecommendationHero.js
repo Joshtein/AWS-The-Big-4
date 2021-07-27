@@ -1,9 +1,11 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { Box, Avatar, Card, makeStyles, CardContent, Typography, Grid } from '@material-ui/core';
+import { Box, Avatar, Card, makeStyles, CardContent, Typography, Grid, IconButton } from '@material-ui/core';
 import { predictCase1, predictCase2 } from '../../AWSDependencies/api';
 import { connect } from 'react-redux';
 import FeaturedRecommendation from '../landing/_FeaturedRecommendation';
 import { green, orange, deepOrange, red } from '@material-ui/core/colors';
+import DeleteIcon from '@material-ui/icons/Delete';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const useStyle = makeStyles((theme) => ({
   
@@ -33,6 +35,17 @@ const useStyle = makeStyles((theme) => ({
       backgroundColor: red[500],
       width: theme.spacing(10),
       height: theme.spacing(10),
+    },
+
+    predictionScore: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-end"
+    },
+
+    iconSize: {
+        width: 20,
+        height: 20
     },
   }))
 
@@ -127,27 +140,34 @@ function RecommendationHero(props) {
                                     <Grid container>
                                         <Grid item md={7}>
                                             <Box p={2}>
-                                            <Typography variant="h4">
-                                                {index + 1}. {rec.name}
-                                            </Typography>
-                                            <Typography variant="body1" color="textSecondary" paragraph>
-                                                {rec.univDesc || "No Description"}
-                                            </Typography>
-                                            <Typography variant="body2" color="textPrimary" paragraph>
-                                                Akreditasi Jurusan: {rec.accreditation || "No Accreditation"}
-                                            </Typography>
+                                                <Typography variant="h4">
+                                                    {index + 1}. {rec.name}
+                                                </Typography>
+                                                <Typography variant="body1" color="textSecondary" paragraph>
+                                                    {rec.univDesc || "No Description"}
+                                                </Typography>
+                                                <Typography variant="body2" color="textPrimary" paragraph>
+                                                    Akreditasi Jurusan: {rec.accreditation || "No Accreditation"}
+                                                </Typography>
+                                            </Box>
+                                            <Box p={2}>
+                                                <Grid item xs={10}>
+                                                    <IconButton iconStyle={classes.iconSize}>
+                                                        <FavoriteIcon/>
+                                                    </IconButton>
+                                                    <IconButton>
+                                                        <DeleteIcon/> 
+                                                    </IconButton>
+                                                </Grid>
                                             </Box>
                                         </Grid>
-
-                                        <Grid item md={3}>
-                                            <Box p={3}>
+                                        
+                                        <Grid item md={5} className={classes.predictionScore}>
+                                             <Box p={3}>
                                                 <Typography variant="h6" color="textPrimary" align="center">
                                                     Prediction Score
                                                 </Typography>
                                             </Box>
-                                        </Grid>
-                                        
-                                        <Grid item md={2}>
                                             <Box p={2}>
                                             {(rec.grade).length < 2 ?
                                                 <Avatar size className={

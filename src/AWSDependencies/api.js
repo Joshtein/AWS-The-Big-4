@@ -185,7 +185,6 @@ body: {
         "score": 85
       }
     ],
-    "budget": 100000000
   }
 */
 export const userUpdate = async(dataSent)=>{
