@@ -93,26 +93,13 @@ function LogIn({ resUser, resUniv, status, getUserData, getUniversityData, updat
                             //fetch user data
                             const userId = attributes[1].Value;
                             getUserData(userId);
-                            resUser.loading ? (
-                              console.log("Loading")
-                            ) : resUser.error ? (
-                              console.log(resUser.error)
-                            ) : (
-                              history.push('/') //ganti ke landing page nanti
-                            );
+                            history.push('/')
                             }
                             else{
                             //fetch univ data
                             const univName = attributes[1].Value;
                             getUniversityData(univName);
-                            resUniv.loading ? (
-                              console.log("Loading")
-                            ) : resUniv.error ? (
-                              console.log(resUniv.error)
-                            ) : (
-                              // console.log(resUniv.univData);
-                              history.push('/calculator') //ganti ke univ dashboard nanti
-                            );
+                            history.push('/university-dashboard') //ganti ke univ dashboard nanti
                           }
                         }
                     });

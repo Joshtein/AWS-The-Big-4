@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Card, CardActions, CardContent, TextField, Typography, Grid, makeStyles, Avatar } from '@material-ui/core';
+import { Box, Button, Card, CardActions, CardContent, TextField, Typography, Grid, makeStyles, Avatar, InputAdornment } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { getListOfMajorsInMajorGroup, getListOfUniversities } from '../../AWSDependencies/api';
 import { connect } from 'react-redux';
@@ -131,7 +131,7 @@ function RecommendationCard(props) {
               />
             </Box>
 
-            <TextField label="Budget" variant="outlined" value={budget} onChange={(event) => {setBudget(event.target.value)}}  />
+            <TextField label="Budget" variant="outlined" value={budget} onChange={(event) => {setBudget(event.target.value)}} InputProps={{startAdornment: <InputAdornment position="start">Rp</InputAdornment>,}} />
           </form>
         </CardContent>
         <CardActions style={{display: "flex", justifyContent: "center"}}>

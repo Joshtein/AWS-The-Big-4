@@ -51,7 +51,6 @@ function LandingNavbar(props) {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-
     setOpenDrawer(open);
   }
 
@@ -138,7 +137,7 @@ function LandingNavbar(props) {
                   <ListItemIcon children={<Dashboard/>}/>
                   <ListItemText primary="Dashboard"/>
                 </ListItem>
-                <ListItem button component={RouterLink} to="/logout" classes={{root: classes.navbar_link_list_item}}>
+                <ListItem button onClick={logOut} classes={{root: classes.navbar_link_list_item}}>
                   <ListItemIcon children={<AccountCircle/>}/>
                   <ListItemText primary="Logout"/>
                 </ListItem>

@@ -17,6 +17,7 @@ import Universities from './components/universities/Universities';
 import Majors from './components/majors/Majors';
 import Recommendation from './components/recommendation/Recommendation';
 import StudentDashboard from './components/studentDashboard/StudentDashboard';
+import UniversityDashboard from './components/universityDashboard/UniversityDashboard';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/login" component={LogIn} />
             <Route exact path="/student-dashboard" component={StudentDashboard} />
+            <Route exact path="/university-dashboard" component={UniversityDashboard} />
             <Route exact path="/universities" component={Universities} />
             <Route exact path="/majors" component={Majors} />
             <Route exact path="/recommendation" component={Recommendation} />
