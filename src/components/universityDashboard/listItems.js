@@ -11,7 +11,7 @@ import { useHistory } from 'react-router-dom';
 import { updateLogOut, updateRecommendationParams } from '../../redux/coba';
 
 function MainListItems (props) {
-  const history = useHistory();
+  const history = useHistory(); 
 
   const logOut = (event) => {
     event.preventDefault();
