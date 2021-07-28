@@ -1,70 +1,71 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
-import LayersIcon from '@material-ui/icons/Layers';
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import List from '@material-ui/core/List';
+import { useHistory } from 'react-router-dom';
+import { updateLogOut, updateRecommendationParams } from '../../redux/coba';
 
-export const mainListItems = (
-  <div>
-    <ListItem button>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Orders" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItem>
-  </div>
-);
+function MainListItems (props) {
+  const history = useHistory();
 
-export const secondaryListItems = (
-  <div>
-    <ListSubheader inset>Saved reports</ListSubheader>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Current month" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Last quarter" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
-    </ListItem>
-  </div>
-);
+  const logOut = (event) => {
+    event.preventDefault();
+    props.updateLogOut();
+    const params = {
+      updated: false,
+    }
+    props.updateRecommendationParams(params);
+    history.push('/login')
+  }
+
+  const home = (event) => {
+    event.preventDefault();
+    history.push('/')
+  }
+
+  return(
+    <List>
+      <div>
+      <ListItem button onClick={home}>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Dashboard" />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <BarChartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Reports" />
+      </ListItem>
+      <ListItem button onClick={logOut}>
+        <ListItemIcon>
+          <AccountCircle />
+        </ListItemIcon>
+        <ListItemText primary="Logout" />
+      </ListItem>
+    </div>
+  </List>
+  )
+}
+  
+
+const mapStateToProps = state => {
+  return {
+    status: state.statusLoggedIn
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateLogOut: () => dispatch(updateLogOut()),
+    updateRecommendationParams: (params) => dispatch(updateRecommendationParams(params))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainListItems);
