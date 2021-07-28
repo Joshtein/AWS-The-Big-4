@@ -83,7 +83,9 @@ function RecommendationHero(props) {
         }
         predictCase1(dataSent).then(data => {
         let list = [];
-        list.push(data);
+        if(data !== 'Failed to make prediction.'){
+            list.push(data);
+        };
         console.log(data);
         if (list.length > 0) {
             setRecList(list);
